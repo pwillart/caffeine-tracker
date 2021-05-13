@@ -14,6 +14,8 @@
 
         "hot": "mix watch --hot",
 
+        "postinstall": "npm run prod",
+
         "prod": "npm run production",
 
         "production": "mix --production"
