@@ -57,6 +57,8 @@ export default {
         addAccessTokenToHeaders();
         return axios.get(`${url}/user`, config)
             .then(res => {
+                if (res.status === 401)
+                    return {status: 'error'};
                 return res.data;
             })
     }
