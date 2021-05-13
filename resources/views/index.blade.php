@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ env("APP_NAME", "Caffeine Tracker") }}</title>
     <!-- Styles -->
-    <link href="{{ \App\Helpers\Helper::asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ url('/css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
 </div>
 
 <!-- React JS -->
-<script src="{{ \App\Helpers\Helper::asset('js/app.js') }}" defer></script>
+<script src="{{ url('/js/app.js') }}" defer></script>
 
 </body>
 </html>
