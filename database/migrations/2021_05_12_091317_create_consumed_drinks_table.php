@@ -18,7 +18,7 @@ class CreateConsumedDrinksTable extends Migration
         Schema::create('consumed_drinks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('drink_id')->constrained('drinkss');
+            $table->foreignId('drink_id')->constrained('drinks');
             $table->integer('servings')->unsigned()->default(1);
             $table->timestamps();
         });
