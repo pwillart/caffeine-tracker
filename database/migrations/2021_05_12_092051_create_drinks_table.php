@@ -8,6 +8,8 @@ class CreateDrinksTable extends Migration
 {
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('drinks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
