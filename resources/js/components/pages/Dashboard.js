@@ -81,7 +81,7 @@ const Dashboard = () => {
         let buttonList = [];
         for (let i = 1; i <= drink.servings; i++) {
             // Note: writing active/disabled button within the push method produced a Babel compilation error
-            const safe = ((drink.caffeine_per_serving * i) + caffeineConsumption < maxConsumption);
+            const safe = ((drink.caffeine_per_serving * i) + caffeineConsumption <= maxConsumption);
             if (safe)
                 buttonList.push(
                     <Button key={i} size="sm" className="mr-3" active onClick={() => consumeHandler(drink.id, i)}>
@@ -127,7 +127,14 @@ const Dashboard = () => {
     return (
         <Layout title="Dashboard" className="container">
             <h3 className="mb-3">Ready for a boost {user.name}?</h3>
-            <div className="mb-3">You have consumed {caffeineConsumption} mg of caffeine.</div>
+            <div className="mb-3">
+                {caffeineConsumption !== 500 &&
+                    <>You have consumed {caffeineConsumption} mg of caffeine.</>
+                }
+                {caffeineConsumption === 500 &&
+                    <>Perfect score! You've reached the safe limit of {maxConsumption}. Reset the counter when your buzz has worn off.</>
+                }
+            </div>
             <div className="mb-3"><Button onClick={resetHandler}>Reset counter</Button></div>
 
             <Table hover variant="dark">

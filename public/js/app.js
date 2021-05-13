@@ -2168,6 +2168,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Dashboard = function Dashboard() {
   // Authentication logic
   var authContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_context_AuthContext__WEBPACK_IMPORTED_MODULE_3__.AuthContext);
@@ -2261,7 +2262,7 @@ var Dashboard = function Dashboard() {
 
     var _loop = function _loop(i) {
       // Note: writing active/disabled button within the push method produced a Babel compilation error
-      var safe = drink.caffeine_per_serving * i + caffeineConsumption < maxConsumption;
+      var safe = drink.caffeine_per_serving * i + caffeineConsumption <= maxConsumption;
       if (safe) buttonList.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_9__.default, {
         size: "sm",
         className: "mr-3",
@@ -2344,7 +2345,11 @@ var Dashboard = function Dashboard() {
       children: ["Ready for a boost ", user.name, "?"]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "mb-3",
-      children: ["You have consumed ", caffeineConsumption, " mg of caffeine."]
+      children: [caffeineConsumption !== 500 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+        children: ["You have consumed ", caffeineConsumption, " mg of caffeine."]
+      }), caffeineConsumption === 500 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+        children: ["Perfect score! You've reached the safe limit of ", maxConsumption, ". Reset the counter when your buzz has worn off."]
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
       className: "mb-3",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_9__.default, {
