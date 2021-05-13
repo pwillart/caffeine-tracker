@@ -5,7 +5,7 @@ const Layout = ({ title = "Cuppa Caffeine Tracker", className, children }) => {
 
         <div>
             <div className="container">
-                <h1 className="display-3 mt-5">Cuppa Caffeine Tracker</h1>
+                <h1 className="display-3 mt-5">{title}</h1>
             </div>
             <div className={className}>{children}</div>
             <div className="mt-3 p-2">

@@ -97,6 +97,15 @@ const Dashboard = () => {
         return buttonList;
     }
 
+    function getAllowedServings(drink) {
+        const allowedServings = Math.floor((maxConsumption - caffeineConsumption) / drink.caffeine_per_serving);
+        switch (allowedServings) {
+            case 0: return 'No more';
+            case 1: return 'One serving left';
+            default: return `${allowedServings} servings left`;
+        }
+    }
+
     const consumeHandler = async (drink_id, servings) => {
         setMessage(null); // Clear error message if any
         // Call service to update consumption
@@ -125,7 +134,7 @@ const Dashboard = () => {
     }
 
     return (
-        <Layout title="Dashboard" className="container">
+        <Layout className="container">
             <h3 className="mb-3">Ready for a boost {user.name}?</h3>
             <div className="mb-3">
                 {caffeineConsumption !== 500 &&
@@ -143,6 +152,7 @@ const Dashboard = () => {
                         <th/>
                         <th>Caffeine per serving</th>
                         <th>Servings per container</th>
+                        <th>Allowed servings</th>
                         <th>Consume serving(s)</th>
                     </tr>
                 </thead>
@@ -159,6 +169,9 @@ const Dashboard = () => {
                         </td>
                         <td>
                             {drink.servings}
+                        </td>
+                        <td>
+                            {getAllowedServings(drink)}
                         </td>
                         <td>
                             <ButtonGroup>

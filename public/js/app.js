@@ -2091,7 +2091,7 @@ var Layout = function Layout(_ref) {
       className: "container",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
         className: "display-3 mt-5",
-        children: "Cuppa Caffeine Tracker"
+        children: title
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: className,
@@ -2287,6 +2287,21 @@ var Dashboard = function Dashboard() {
     return buttonList;
   };
 
+  function getAllowedServings(drink) {
+    var allowedServings = Math.floor((maxConsumption - caffeineConsumption) / drink.caffeine_per_serving);
+
+    switch (allowedServings) {
+      case 0:
+        return 'No more';
+
+      case 1:
+        return 'One serving left';
+
+      default:
+        return "".concat(allowedServings, " servings left");
+    }
+  }
+
   var consumeHandler = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(drink_id, servings) {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -2338,7 +2353,6 @@ var Dashboard = function Dashboard() {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_layout_Layout__WEBPACK_IMPORTED_MODULE_2__.default, {
-    title: "Dashboard",
     className: "container",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h3", {
       className: "mb-3",
@@ -2366,6 +2380,8 @@ var Dashboard = function Dashboard() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
             children: "Servings per container"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
+            children: "Allowed servings"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
             children: "Consume serving(s)"
           })]
         })
@@ -2383,6 +2399,8 @@ var Dashboard = function Dashboard() {
               children: [drink.caffeine_per_serving, " mg"]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
               children: drink.servings
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+              children: getAllowedServings(drink)
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__.default, {
                 children: buttonList(drink)
